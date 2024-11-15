@@ -58,3 +58,57 @@
 ## Summary
 
 The microservice will act as a reliable, high-performance, cloud-agnostic proxy for the Open Street Map API with caching and essential monitoring capabilities. Express with TypeScript ensures a lightweight, efficient service layer, while Redis and Terraform enable speed, reliability, and straightforward deployment across any cloud provider.
+
+
+## Installation and Testing Instructions
+
+### Installation
+
+1. **Clone the repository**
+   ```sh
+   git clone <repository-url>
+   cd osm-proxy-microservice
+   ```
+
+2. **Install dependencies**
+   ```sh
+   npm install
+   ```
+
+3. **Configure environment variables**
+   - Create a `.env` file in the root directory and add the required variables:
+   ```
+   SERVICE_API_KEY=your_service_api_key
+   LOGGING_SERVICE_KEY=your_logging_service_key
+   REDIS_URL=redis://localhost:6379
+   ```
+
+4. **Start Redis**
+   - Make sure Redis is installed and running:
+   ```sh
+   redis-server
+   ```
+
+5. **Compile TypeScript**
+   ```sh
+   npx tsc
+   ```
+
+6. **Run the application**
+   ```sh
+   node dist/index.js
+   ```
+
+### Testing
+
+1. **Test with Curl**
+   Use the following command to test the `/osm` endpoint:
+   ```sh
+   curl -X GET "http://localhost:3000/osm?q=Buenos+Aires" -H "x-api-key: your_service_api_key"
+   ```
+   - Replace `your_service_api_key` with the actual API key you set in your `.env` file.
+
+2. **Expected Response**
+   - You should receive JSON data from OpenStreetMap for the queried location (`Buenos Aires`).
+   - If the query is repeated, the data will be served from the Redis cache, improving response time.
+   
