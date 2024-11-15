@@ -28,9 +28,7 @@
 1. **Environment Variables**
    - Sensitive data such as API keys, Redis configuration, and logging service credentials should be stored in environment variables.
    - Example environment variables:
-     - `OSM_API_KEY`: Key for accessing Open Street Map API.
      - `SERVICE_API_KEY`: Key for authenticating clients accessing this microservice.
-     - `LOGGING_SERVICE_KEY`: Key for third-party logging integration (e.g., DataDog, LogDNA).
    - Use `.env` files with packages like `dotenv` to load environment variables into the application securely.
 
 2. **Monitoring & Logging**
